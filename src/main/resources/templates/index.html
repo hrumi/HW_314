@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <title>All users</title>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> Name </th>
+        <th> Age </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:if="${usersList.isEmpty()}">
+        <td colspan="2"> No Users Available </td>
+    </tr>
+
+    <tr th:each="user : ${usersList}">
+        <td><span th:text="${user.id}"> ID </span></td>
+        <td><span th:text="${user.name}"> Name </span></td>
+        <td><span th:text="${user.age}"> Age </span></td>
+        <td><a th:href="@{/users/{id}(id=${user.getId()})}"> UserInfo </a></td>
+        <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}"> Edit </a></td>
+        <td><a th:href="@{/users/{id}/delete(id=${user.getId()})}"> Delete </a></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<br>
+
+<div>
+    <form th:method="POST" th:action="@{/users}">
+        <label for="name">Name</label>
+        <input name="name" type="text" id="name">
+        <br>
+        <label for="age">Age </label>
+        <input name="age" type="number" id="age">
+        <br>
+        <input type="submit" value="Add User">
+    </form>
+</div>
 
 
 </body>

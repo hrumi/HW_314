@@ -21,8 +21,6 @@ public class User implements UserDetails {
     @Column
     private Integer age;
     @Column
-    private String username;
-    @Column
     private String password;
     @Transient
     private String passwordConfirm;
@@ -53,9 +51,6 @@ public class User implements UserDetails {
 
     //Сеттеры
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
@@ -66,10 +61,6 @@ public class User implements UserDetails {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -115,7 +106,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return name;
     }
 
     @Override

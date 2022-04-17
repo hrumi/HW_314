@@ -3,7 +3,7 @@ package ru.kata.spring.boot_security.demo.DAO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.kata.spring.boot_security.demo.model.Role;
+//import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,18 +41,23 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void addUser(User user) {
-        user.setRoles(Set.of(new Role(1L,"ROLE_USER")));
-        user.setPassword(user.getPassword());
+        //user.setRoles(Set.of(new Role(1L,"ROLE_USER")));
+        //user.setPassword(user.getPassword());
         entityManager.persist(user);
     }
 
-    public UserDetails loadUserByUsername(String username) {
-        User user = entityManager.find(User.class, username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return user;
+    @Override
+    public User getUserByName(String name) {
+        return entityManager.find(User.class, name);
     }
+
+//    public UserDetails loadUserByUsername(String name) {
+//        User user = entityManager.find(User.class, name);
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User not found");
+//        }
+//        return user;
+//    }
 
 }
 

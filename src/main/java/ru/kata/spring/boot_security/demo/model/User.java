@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 //@Data
 @Table(name = "users")
-public class User implements UserDetails {
+public class User { //implements { //UserDetails {
 
     @Id
     @Column
@@ -20,12 +20,12 @@ public class User implements UserDetails {
     private String name;
     @Column
     private Integer age;
-    @Column
-    private String password;
-    @Transient
-    private String passwordConfirm;
-    @ManyToMany(fetch = FetchType.EAGER)  //Грузит Roles c User
-    private Set<Role> roles;
+//    @Column
+//    private String password;
+//    @Transient
+//    private String passwordConfirm;
+//    @ManyToMany(fetch = FetchType.EAGER)  //Грузит Roles c User
+//    private Set<Role> roles;
 
 
     //Геттеры
@@ -41,19 +41,18 @@ public class User implements UserDetails {
         return age;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+////    public Set<Role> getRoles() {
+//        return roles; }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
+//    public String getPasswordConfirm() {
+//        return passwordConfirm;
+//    }
 
     //Сеттеры
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+//    public void setPasswordConfirm(String passwordConfirm) {
+//        this.passwordConfirm = passwordConfirm;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -63,13 +62,13 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 
     //equals hashcode
 
@@ -94,38 +93,38 @@ public class User implements UserDetails {
 
     //from UserDetails
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return null;
+//    }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
 
-    @Override
-    public String getUsername() {
-        return name;
-    }
+//    @Override
+//    public String getUsername() {
+//        return name;
+//    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }

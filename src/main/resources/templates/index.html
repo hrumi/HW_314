@@ -15,7 +15,6 @@
     </tr>
     </thead>
     <tbody>
-
     <tr th:if="${usersList.isEmpty()}">
         <td colspan="2"> No Users Available </td>
     </tr>
@@ -35,7 +34,7 @@
 <br>
 
 <div>
-    <form th:method="POST" th:action="@{/users}">
+    <form th:method="POST" th:action="@{/users/admin}">
         <label for="name">Name</label>
         <input name="name" type="text" id="name">
         <br>

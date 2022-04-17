@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
+
+import java.security.Principal;
 
 
 @Controller
@@ -16,10 +19,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping() //для получение view со списком users
-    public String getAll(Model model) {
+    @GetMapping("/test")
+    public String homePageUserWithOut () {
+        return "user1";
+    }
+
+    @GetMapping("/admin")
+    public String homePageAdmin (Model model) {
         model.addAttribute("usersList", userService.getAllUsers());
         return "index";
+    }
+
+    @GetMapping("/user") //для получение view со списком users
+    public String homePageUser (Principal principal, Model model) {
+        int id = userService.getUserByName(principal.getName()).getId();
+        model.addAttribute("user", userService.getUserById(id));
+        return "user";
     }
 
 //    @GetMapping("/new") //получение view для создания нового user
@@ -36,7 +51,7 @@ public class UserController {
     @GetMapping("/{id}/delete")
     public String deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
-        return "redirect:/users";
+        return "redirect:/users/admin";
     }
 
     @GetMapping("/{id}")
@@ -45,15 +60,15 @@ public class UserController {
         return "user";
     }
 
-    @PostMapping() //ловим ПОСТ запрос из view new
+    @PostMapping("/admin") //ловим ПОСТ запрос из view new
     public String addNewUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
-        return "redirect:/users";
+        return "redirect:/users/admin";
     }
 
     @PatchMapping ("/{id}")  //отправка данных страницы изменения в БД
     public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUser(id, user);
-        return "redirect:/users";
+        return "redirect:/users/admin";
     }
 }

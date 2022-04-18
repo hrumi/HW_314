@@ -4,7 +4,6 @@ package ru.kata.spring.boot_security.demo.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -20,8 +19,15 @@ public class User { //implements { //UserDetails {
     private String name;
     @Column
     private Integer age;
-//    @Column
-//    private String password;
+    @Column
+    private String password;
+
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+        joinColumns = @JoinColumn(name = "users_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
 //    @Transient
 //    private String passwordConfirm;
 //    @ManyToMany(fetch = FetchType.EAGER)  //Грузит Roles c User
@@ -41,7 +47,10 @@ public class User { //implements { //UserDetails {
         return age;
     }
 
-////    public Set<Role> getRoles() {
+    public String getPassword() {
+        return password;
+    }
+    ////    public Set<Role> getRoles() {
 //        return roles; }
 
 //    public String getPasswordConfirm() {
@@ -62,7 +71,11 @@ public class User { //implements { //UserDetails {
         this.age = age;
     }
 
-//    public void setPassword(String password) {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //    public void setPassword(String password) {
 //        this.password = password;
 //    }
 //

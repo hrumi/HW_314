@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {//, UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDAOImpl userDAOImpl;
 
@@ -51,8 +51,12 @@ public class UserServiceImpl implements UserService {//, UserDetailsService {
         return userDAOImpl.getUserByName(name);
     }
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        return userDAOImpl.loadUserByUsername(username);
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDAOImpl.getUserByName(username);
+        if (user == null)
+            throw new UsernameNotFoundException("User not found");
+        return org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), )
+    }
+
 }

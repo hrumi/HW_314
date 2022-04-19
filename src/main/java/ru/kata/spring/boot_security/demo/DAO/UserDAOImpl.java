@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Set;
 
@@ -23,19 +24,19 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
-    public void updateUser(int id, User user) {
+    public void updateUser(Long id, User user) {
         User updateUser = getUserById(id);
         updateUser.setName(user.getName());
         updateUser.setAge(user.getAge());
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         entityManager.remove(getUserById(id));
     }
 
@@ -48,17 +49,10 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User getUserByName(String name) {
-        return entityManager.find(User.class, name);
+         return entityManager.createQuery("select u from User u WHERE u.name = :name", User.class)
+                 .setParameter("name", name)
+                 .getSingleResult();
     }
-
-//    public UserDetails loadUserByUsername(String name) {
-//        User user = entityManager.find(User.class, name);
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found");
-//        }
-//        return user;
-//    }
-
 }
 
 

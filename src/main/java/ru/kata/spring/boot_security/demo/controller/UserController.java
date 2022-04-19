@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("/user") //для получение view со списком users
     public String homePageUser (Principal principal, Model model) {
-        int id = userService.getUserByName(principal.getName()).getId();
+        Long id = userService.getUserByName(principal.getName()).getId();
         model.addAttribute("user", userService.getUserById(id));
         return "user";
     }
@@ -43,19 +43,19 @@ public class UserController {
 //    }
 
     @GetMapping("/{id}/edit")
-    public String editUser(@PathVariable("id") int id, Model model) {
+    public String editUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteUser(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/users/admin";
     }
 
     @GetMapping("/{id}")
-    public String showUser(@PathVariable("id") int id, Model model) {
+    public String showUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "user";
     }
@@ -67,7 +67,7 @@ public class UserController {
     }
 
     @PatchMapping ("/{id}")  //отправка данных страницы изменения в БД
-    public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.updateUser(id, user);
         return "redirect:/users/admin";
     }

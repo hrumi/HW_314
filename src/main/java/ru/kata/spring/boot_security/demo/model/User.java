@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.model;
 
-//import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -8,38 +7,33 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-//@Data
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column
+    private long id;
 
-    @Column (name = "name")
+    @Column
     private String name;
 
     @Column
-    private Integer age;
+    private int age;
 
     @Column
     private String password;
 
-//    @Transient
-//    private String passwordConfirm;
-
     @ManyToMany(fetch = FetchType.EAGER)  //Грузит Roles c User
     private Set<Role> roles;
-//    @ManyToMany
+
+    //    @ManyToMany
 //    @JoinTable(name = "users_roles",
 //        joinColumns = @JoinColumn(name = "users_id"),
 //        inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles;
-
 
     //Геттеры
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -47,7 +41,7 @@ public class User implements UserDetails {
         return name;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -55,21 +49,12 @@ public class User implements UserDetails {
         return roles;
     }
 
-//    public String getPasswordConfirm() {
-//        return passwordConfirm;
-//    }
-
     //Сеттеры
-
-//    public void setPasswordConfirm(String passwordConfirm) {
-//        this.passwordConfirm = passwordConfirm;
-//    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -82,31 +67,31 @@ public class User implements UserDetails {
     }
 
     //equals hashcode
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
-        if (!id.equals(user.id)) return false;
+        if (id != user.id) return false;
         if (!name.equals(user.name)) return false;
-        return age.equals(user.age);
+        return age == user.age;
     }
 
     @Override
     public int hashCode() {
-        int result = Math.toIntExact(id);
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
-        result = 31 * result + age.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + password.hashCode();
         return result;
     }
 
-    //from UserDetails
+//from UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return getRoles();
     }
 
     @Override

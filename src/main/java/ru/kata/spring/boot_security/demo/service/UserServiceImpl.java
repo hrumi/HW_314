@@ -1,19 +1,13 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.UserDAOImpl;
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -24,6 +18,10 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserDAOImpl userDAOImpl) {
         this.userDAOImpl = userDAOImpl;
+    }
+
+    public BCryptPasswordEncoder myPasswordEncoder() {
+        return new BCryptPasswordEncoder(12);
     }
 
     @Override
@@ -38,7 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, User user) {
+        user.setPassword(myPasswordEncoder().encode(user.getPassword()));
         userDAOImpl.updateUser(id, user);
+
     }
 
     @Override
@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
+        user.setPassword(myPasswordEncoder().encode(user.getPassword()));
         userDAOImpl.addUser(user);
     }
 

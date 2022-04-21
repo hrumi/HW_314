@@ -12,6 +12,11 @@
         <th> Id </th>
         <th> Name </th>
         <th> Age </th>
+        <th> UserInfo </th>
+        <th> UserEdit </th>
+        <th> UserDelete </th>
+        <th> UserRoles </th>
+        <th> Password </th>
     </tr>
     </thead>
     <tbody>
@@ -26,6 +31,8 @@
         <td><a th:href="@{/users/{id}(id=${user.getId()})}"> UserInfo </a></td>
         <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}"> Edit </a></td>
         <td><a th:href="@{/users/{id}/delete(id=${user.getId()})}"> Delete </a></td>
+        <td><span th:each="r : ${user.getRoles()}" th:text="${r.toString() + ' '}"> Roles </span></td>
+        <td><span th:text="${user.password}"> Password </span></td>
     </tr>
 
     </tbody>
@@ -38,13 +45,19 @@
         <label for="name">Name</label>
         <input name="name" type="text" id="name">
         <br>
-        <label for="age">Age </label>
+        <label for="age">Age</label>
         <input name="age" type="number" id="age">
         <br>
+        <label for="password">Password</label>
+        <input name="password" type="text" id="password">
+        <br>
+        <label for="admin_role">Role admin</label>
+        <input name="admin_role" type="checkbox" id="admin_role">
         <input type="submit" value="Add User">
     </form>
 </div>
-
-
+<form class="container" th:action="@{/logout}" method="post">
+    <input class="btn btn-danger btn-lg" type="submit" value="Logout"/>
+</form>
 </body>
 </html>

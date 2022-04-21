@@ -32,6 +32,10 @@ public class User implements UserDetails {
 //        joinColumns = @JoinColumn(name = "users_id"),
 //        inverseJoinColumns = @JoinColumn(name = "role_id"))
 
+
+    public User() {
+    }
+
     //Геттеры
     public long getId() {
         return id;

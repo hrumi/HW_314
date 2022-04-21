@@ -12,7 +12,16 @@
     <label for="age">New Age</label>
     <input type="number" th:field="*{age}" id="age"/>
     <br>
+    <label for="password">New Password</label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <label for="admin_role">Role admin</label>
+    <input type="checkbox" th:checked="${user.roles.size() == 2}" name="admin_role" id="admin_role">
+    <br>
     <input type="submit" value="Update!"/>
+</form>
+<form class="container" th:action="@{/logout}" method="post">
+    <input class="btn btn-danger btn-lg" type="submit" value="Logout"/>
 </form>
 </body>
 </html>

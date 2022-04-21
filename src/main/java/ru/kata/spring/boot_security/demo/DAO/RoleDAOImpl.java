@@ -2,7 +2,6 @@ package ru.kata.spring.boot_security.demo.DAO;
 
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.Role;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -19,20 +18,19 @@ public class RoleDAOImpl implements RoleDAO{
     }
 
     @Override
-    public Role getRoleById(Long id) {
+    public Role getRoleById(long id) {
         return entityManager.find(Role.class, id);
     }
 
     @Override
-    public void updateRole(Long id, Role role) {
+    public void updateRole(long id, Role role) {
         Role updatingRole = getRoleById(id);
         updatingRole.setName(role.getName());
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(long id) {
         entityManager.remove(getRoleById(id));
-
     }
 
     @Override

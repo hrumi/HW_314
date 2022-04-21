@@ -3,25 +3,25 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
-
 import java.security.Principal;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
-    private UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
+    private final RoleService roleService;
 
-    @GetMapping("/test")
-    public String homePageUserWithOut () {
-        return "user1";
+    public UserController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/admin")
@@ -36,11 +36,6 @@ public class UserController {
         model.addAttribute("user", userService.getUserById(id));
         return "user";
     }
-
-//    @GetMapping("/new") //получение view для создания нового user
-//    public String newUser(@ModelAttribute("user") User user) {
-//        return "new";
-//    }
 
     @GetMapping("/{id}/edit")
     public String editUser(@PathVariable("id") Long id, Model model) {
@@ -60,14 +55,33 @@ public class UserController {
         return "user";
     }
 
-    @PostMapping("/admin") //ловим ПОСТ запрос из view new
-    public String addNewUser(@ModelAttribute("user") User user) {
+    @PostMapping("/admin")
+    public String addNewUser(@ModelAttribute("user") User user, @RequestParam(value = "admin_role", defaultValue = "false") boolean itsAdmin) {
+
+        Set<Role> rolesSet= new HashSet<>();
+        rolesSet.add(roleService.getRoleById(1L));
+        if (itsAdmin) {
+            rolesSet.add(roleService.getRoleById(2L));
+        }
+        user.setRoles(rolesSet);
+
         userService.addUser(user);
         return "redirect:/users/admin";
     }
 
     @PatchMapping ("/{id}")  //отправка данных страницы изменения в БД
-    public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") Long id, @RequestParam(value = "admin_role", defaultValue = "false") boolean itsAdmin) {
+
+        System.out.println(itsAdmin);
+
+        Set<Role> rolesSet= new HashSet<>();
+        rolesSet.add(roleService.getRoleById(1L));
+        if (itsAdmin) {
+            rolesSet.add(roleService.getRoleById(2L));
+        }
+        user.setRoles(rolesSet);
+        System.out.println(rolesSet);
+
         userService.updateUser(id, user);
         return "redirect:/users/admin";
     }

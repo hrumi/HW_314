@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface RoleDAO {
     List<Role> getAllRoles();
-    void updateRole(Long id, Role role);
-    void deleteById(Long id);
+    void updateRole(long id, Role role);
+    void deleteById(long id);
     void addRole(Role role);
-    public Role getRoleById(Long id);
+    public Role getRoleById(long id);
 }

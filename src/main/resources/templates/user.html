@@ -21,7 +21,8 @@
         </tr>
     </tbody>
 </table>
-<!--<a th:href="@{/users}"> Back to userlist </a>-->
-
+<form class="container" th:action="@{/logout}" method="post">
+    <input class="btn btn-danger btn-lg" type="submit" value="Logout"/>
+</form>
 </body>
 </html>

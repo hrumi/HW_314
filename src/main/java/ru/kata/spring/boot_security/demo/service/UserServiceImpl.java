@@ -5,9 +5,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.UserDAOImpl;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -35,10 +37,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long id, User user) {
+    public void updateUser(Long id, User user, Set<Role> roleSet) {
         user.setPassword(myPasswordEncoder().encode(user.getPassword()));
+        user.setRoles(roleSet);
         userDAOImpl.updateUser(id, user);
-
     }
 
     @Override
@@ -47,8 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user, Set<Role> roleSet) {
         user.setPassword(myPasswordEncoder().encode(user.getPassword()));
+        user.setRoles(roleSet);
         userDAOImpl.addUser(user);
     }
 
@@ -64,9 +67,4 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User not found");
         return user;
     }
-
-//    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-//        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
-//    }
-
 }

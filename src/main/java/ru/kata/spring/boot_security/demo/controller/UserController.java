@@ -7,6 +7,7 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
@@ -63,26 +64,20 @@ public class UserController {
         if (itsAdmin) {
             rolesSet.add(roleService.getRoleById(2L));
         }
-        user.setRoles(rolesSet);
-
-        userService.addUser(user);
+        userService.addUser(user, rolesSet);
         return "redirect:/users/admin";
     }
 
     @PatchMapping ("/{id}")  //отправка данных страницы изменения в БД
     public String EditUser(@ModelAttribute("user") User user, @PathVariable("id") Long id, @RequestParam(value = "admin_role", defaultValue = "false") boolean itsAdmin) {
 
-        System.out.println(itsAdmin);
-
         Set<Role> rolesSet= new HashSet<>();
         rolesSet.add(roleService.getRoleById(1L));
         if (itsAdmin) {
             rolesSet.add(roleService.getRoleById(2L));
         }
-        user.setRoles(rolesSet);
-        System.out.println(rolesSet);
 
-        userService.updateUser(id, user);
+        userService.updateUser(id, user, rolesSet);
         return "redirect:/users/admin";
     }
 }

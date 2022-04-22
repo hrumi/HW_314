@@ -23,8 +23,7 @@ public class User implements UserDetails {
 
     @Column
     private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER)  //Грузит Roles c User
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     //    @ManyToMany

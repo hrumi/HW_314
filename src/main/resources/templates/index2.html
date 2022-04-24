@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+
+ <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -13,16 +14,16 @@
 <body>
 <div class="container-fluid"> <!--начало главного контейнера-->
     <div class="row"> <!--строка с email role и logout-->
-        <div class="col-md-10 py-3 bg-dark">
+        <div class="col py-2 bg-dark">
             <div class="text-white">
                 <h3 class="text-left">
                     UserEmail. UserRole.
                 </h3>
             </div>
         </div>
-        <div class="col-md-2 py-3 bg-dark">
-            <form class="container" th:action="@{/logout}" method="post">
-                <input class="btn btn-link btn-block" type="submit" value="Logout"/>
+        <div class="col-sm-auto py-2 bg-dark">
+            <form method="post" th:action="@{/logout}">
+                <input class="btn btn-link" type="submit" value="Logout"/>
             </form>
         </div>
     </div><!--конец строки с email role и logout-->

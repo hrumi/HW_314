@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Привет, мир!</title>
+</head>
+<body>
+<div class="container-fluid"> <!--начало главного контейнера-->
+    <div class="row"> <!--строка с email role и logout-->
+        <div class="col-md-10 py-3 bg-dark">
+            <div class="text-white">
+                <h3 class="text-left">
+                    UserEmail. UserRole.
+                </h3>
+            </div>
+        </div>
+        <div class="col-md-2 py-3 bg-dark">
+            <form class="container" th:action="@{/logout}" method="post">
+                <input class="btn btn-link btn-block" type="submit" value="Logout"/>
+            </form>
+        </div>
+    </div><!--конец строки с email role и logout-->
+    <div class="row"> <!--строка с навигацией и табами-->
+        <div class="col-md-2"> <!--колонка с навигацией-->
+        </div>
+        <div class="col-md-10"> <!--колонка с табами-->
+            <div class="row"> <!--строка с текстом AdminPanel-->
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row"> <!--строка с текстом табами-->
+                <div class="col-md-12"> <!--колонка с табами код здесь-->
+                </div>
+            </div>
+            <div class="row"> <!--строка с модальным окном!-->
+                <div class="col-md-12">
+                    <a id="modal-250630" href="#modal-container-250630" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
+                    <div class="modal fade" id="modal-container-250630" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary">
+                                        Save changes
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!--конец строки с навигацией и табами-->
+</div> <!--конец главного контейнера    -->
+
+
+
+
+
+
+
+
+<!-- Вариант 1: пакет jQuery и Bootstrap (включает Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>

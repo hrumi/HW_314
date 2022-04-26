@@ -27,8 +27,8 @@
             </form>
         </div>
     </div><!--конец строки с email role и logout-->
-    <div class="row mt-4"> <!--строка с навигацией и табами-->
-        <div class="col-md-2 m-0 p-0"> <!--колонка с навигацией-->
+    <div class="row mt-4 vh-100"> <!--строка с навигацией и табами-->
+        <div class="col-md-2 p-0"> <!--колонка с навигацией-->
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Admin</a>
@@ -38,24 +38,127 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-10"> <!--колонка с табами-->
+        <div class="col-md-10 bg-light"> <!--колонка с табами-->
             <div class="row"> <!--строка с текстом AdminPanel-->
                 <div class="col-md-12">
-                    <h3 class="text-left">
-                        Admin panel
-                    </h3>
+                    <div class=""><h1>Admin panel</h1></div>
                 </div>
             </div>
             <div class="row"> <!--строка с текстом табами-->
                 <div class="col-md-12"> <!--колонка с табами код здесь-->
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs" id="adminPanelTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#!">Active</a>
+                            <a class="nav-link active" id="user-tab" data-toggle="tab" href="#userTable" role="tab" aria-controls="userTable" aria-selected="true">User table</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!">Link</a>
+                            <a class="nav-link" id="new-user-tab" data-toggle="tab" href="#newUser" role="tab" aria-controls="newUser" aria-selected="false">New user</a>
                         </li>
                     </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="userTable" role="tabpanel" aria-labelledby="user-tab">
+                            <div class="p-3 border"><h3>All users</h3></div>
+                            <div class="p-4 border border-top-0 bg-white">
+                                <table class="table table-striped"> <!--таблица первого таба-->
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Age</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Name</td>
+                                        <td>Soname</td>
+                                        <td>Age</td>
+                                        <td>Email</td>
+                                        <td>Role</td>
+                                        <td>Edit</td>
+                                        <td>Delete</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="newUser" role="tabpanel" aria-labelledby="new-user-tab">
+                            <div class="p-3 border"><h3>Add new user</h3></div>
+                            <div class="p-4 d-flex justify-content-center border border-top-0 bg-white">
+                                <form class="w-25">
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl1">First name</label>
+                                        <input type="text" class="form-control" id="inputTextControl1">
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl2">Last name</label>
+                                        <input type="text" class="form-control" id="inputTextControl2">
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl3">Age</label>
+                                        <input type="text" class="form-control" id="inputTextControl3">
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl4">Email</label>
+                                        <input type="email" class="form-control" id="inputTextControl4">
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl5">Email</label>
+                                        <input type="password" class="form-control" id="inputTextControl5">
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <label for="inputTextControl6">Role</label>
+                                        <select multiple class="form-control" id="inputTextControl6">
+                                            <option>ADMIN</option>
+                                            <option>USER</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--                        <li class="nav-item"> &lt;!&ndash;первый таб&ndash;&gt;-->
+<!--                            <a class="nav-link active show" href="#!" data-toggle="tab">Active</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a class="nav-link" href="#!">Link</a>-->
+<!--                        </li>-->
+<!--                            <table class="table table-striped"> &lt;!&ndash;таблица первого таба&ndash;&gt;-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>ID</th>-->
+<!--                                    <th>First Name</th>-->
+<!--                                    <th>Last Name</th>-->
+<!--                                    <th>Age</th>-->
+<!--                                    <th>Email</th>-->
+<!--                                    <th>Role</th>-->
+<!--                                    <th>Edit</th>-->
+<!--                                    <th>Delete</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <td>ID</td>-->
+<!--                                    <td>Name</td>-->
+<!--                                    <td>Soname</td>-->
+<!--                                    <td>Age</td>-->
+<!--                                    <td>Email</td>-->
+<!--                                    <td>Role</td>-->
+<!--                                    <td>Edit</td>-->
+<!--                                    <td>Delete</td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+
+<!--                        </li>-->
+<!--                    </ul>-->
                 </div>
             </div>
             <div class="row"> <!--строка с модальным окном!-->

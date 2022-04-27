@@ -19,18 +19,18 @@ public class User implements UserDetails {
     private String name;
 
     @Column
+    private String surname;
+
+    @Column
     private int age;
+
+    @Column
+    private String email;
 
     @Column
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
-
-    //    @ManyToMany
-//    @JoinTable(name = "users_roles",
-//        joinColumns = @JoinColumn(name = "users_id"),
-//        inverseJoinColumns = @JoinColumn(name = "role_id"))
-
 
     public User() {
     }
@@ -52,6 +52,14 @@ public class User implements UserDetails {
         return roles;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     //Сеттеры
     public void setName(String name) {
         this.name = name;
@@ -67,6 +75,14 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     //equals hashcode

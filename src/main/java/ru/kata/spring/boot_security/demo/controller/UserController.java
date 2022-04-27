@@ -26,8 +26,11 @@ public class UserController {
     }
 
     @GetMapping("/admin")
-    public String homePageAdmin (Model model) {
+    public String homePageAdmin (Principal principal, Model model) {
         model.addAttribute("usersList", userService.getAllUsers());
+
+        Long id = userService.getUserByName(principal.getName()).getId();
+        model.addAttribute("currentUser", userService.getUserById(id));
         return "index";
     }
 

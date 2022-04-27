@@ -12,7 +12,9 @@
     <tr>
         <th> Id </th>
         <th> Name </th>
+        <th> Surname </th>
         <th> Age </th>
+        <th> Email </th>
         <th> UserInfo </th>
         <th> UserEdit </th>
         <th> UserDelete </th>
@@ -28,7 +30,9 @@
     <tr th:each="user : ${usersList}">
         <td><span th:text="${user.getId()}"> ID </span></td>
         <td><span th:text="${user.getName()}"> Name </span></td>
+        <td><span th:text="${user.getSurname()}"> Surname </span></td>
         <td><span th:text="${user.getAge()}"> Age </span></td>
+        <td><span th:text="${user.getEmail()}"> Email </span></td>
         <td><a th:href="@{/users/{id}(id=${user.getId()})}"> UserInfo </a></td>
         <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}"> Edit </a></td>
         <td><a th:href="@{/users/{id}/delete(id=${user.getId()})}"> Delete </a></td>
@@ -46,8 +50,14 @@
         <label for="name">Name</label>
         <input name="name" type="text" id="name">
         <br>
+        <label for="surname">Surname</label>
+        <input name="surname" type="text" id="surname">
+        <br>
         <label for="age">Age</label>
         <input name="age" type="number" id="age">
+        <br>
+        <label for="email">Email</label>
+        <input name="email" type="email" id="email">
         <br>
         <label for="password">Password</label>
         <input name="password" type="text" id="password">

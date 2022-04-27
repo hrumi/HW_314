@@ -79,8 +79,8 @@
                                         <td>Age</td>
                                         <td>Email</td>
                                         <td>Role</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <td><a id="modal-editUser" href="#modal-container-editUser" role="button" class="btn btn-info" data-toggle="modal">Edit</a></td>
+                                        <td><a id="modal-deleteUser" href="#modal-container-deleteUser" role="button" class="btn btn-danger" data-toggle="modal">Delete</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="form-group text-center">
                                         <label for="inputTextControl6">Role</label>
-                                        <select multiple class="form-control" id="inputTextControl6">
+                                        <select multiple class="form-control" size="auto" id="inputTextControl6">
                                             <option>ADMIN</option>
                                             <option>USER</option>
                                         </select>
@@ -121,51 +121,12 @@
                             </div>
                         </div>
                     </div>
-<!--                    <ul class="nav nav-tabs" id="myTab" role="tablist">-->
-<!--                        <li class="nav-item"> &lt;!&ndash;первый таб&ndash;&gt;-->
-<!--                            <a class="nav-link active show" href="#!" data-toggle="tab">Active</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a class="nav-link" href="#!">Link</a>-->
-<!--                        </li>-->
-<!--                            <table class="table table-striped"> &lt;!&ndash;таблица первого таба&ndash;&gt;-->
-<!--                                <thead>-->
-<!--                                <tr>-->
-<!--                                    <th>ID</th>-->
-<!--                                    <th>First Name</th>-->
-<!--                                    <th>Last Name</th>-->
-<!--                                    <th>Age</th>-->
-<!--                                    <th>Email</th>-->
-<!--                                    <th>Role</th>-->
-<!--                                    <th>Edit</th>-->
-<!--                                    <th>Delete</th>-->
-<!--                                </tr>-->
-<!--                                </thead>-->
-<!--                                <tbody>-->
-<!--                                <tr>-->
-<!--                                    <td>ID</td>-->
-<!--                                    <td>Name</td>-->
-<!--                                    <td>Soname</td>-->
-<!--                                    <td>Age</td>-->
-<!--                                    <td>Email</td>-->
-<!--                                    <td>Role</td>-->
-<!--                                    <td>Edit</td>-->
-<!--                                    <td>Delete</td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-
-<!--                        </li>-->
-<!--                    </ul>-->
                 </div>
             </div>
-            <div class="row"> <!--строка с модальным окном!-->
-                <div class="col-md-12">
-                    <a id="modal-250630" href="#modal-container-250630" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 
-                    <div class="modal fade" id="modal-container-250630" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="row"> <!--EditUser строка с модальным окном!-->
+                <div class="col-md-12">
+                    <div class="modal fade" id="modal-container-editUser" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -176,26 +137,107 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    ...
+                                <div class="modal-body d-flex justify-content-center">
+                                    <form class="w-50">
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE1">First name</label>
+                                            <input type="text" class="form-control" id="inputTextControlE1">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE2">Last name</label>
+                                            <input type="text" class="form-control" id="inputTextControlE2">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE3">Age</label>
+                                            <input type="number" class="form-control" id="inputTextControlE3">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE4">Email</label>
+                                            <input type="email" class="form-control" id="inputTextControlE4">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE5">Email</label>
+                                            <input type="password" class="form-control" id="inputTextControlE5">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlE6">Role</label>
+                                            <select multiple class="form-control" size="auto" id="inputTextControlE6">
+                                                <option>ADMIN</option>
+                                                <option>USER</option>
+                                            </select>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-primary">
-                                        Save changes
-                                    </button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                         Close
                                     </button>
+                                    <button type="button" class="btn btn-primary">
+                                        Edit
+                                    </button>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-            </div>
+            </div>  <!--строка с модальным окном!-->
+
+            <div class="row"> <!--DeleteUser строка с модальным окном!-->
+                <div class="col-md-12">
+                    <div class="modal fade" id="modal-container-deleteUser" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="myModalLabel2">
+                                        Modal title
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex justify-content-center">
+                                    <form class="w-50">
+                                        <fieldset disabled>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlD1">First name</label>
+                                            <input type="text" class="form-control" id="inputTextControlD1">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlD2">Last name</label>
+                                            <input type="text" class="form-control" id="inputTextControlD2">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlD3">Age</label>
+                                            <input type="number" class="form-control" id="inputTextControlD3">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlD4">Email</label>
+                                            <input type="email" class="form-control" id="inputTextControlD4">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label for="inputTextControlD5">Role</label>
+                                            <select multiple class="form-control" id="inputTextControlD5">
+                                                <option>ADMIN</option>
+                                                <option>USER</option>
+                                            </select>
+                                        </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  <!--строка с модальным окном!-->
+
         </div>
     </div> <!--конец строки с навигацией и табами-->
 </div> <!--конец главного контейнера    -->

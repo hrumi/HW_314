@@ -31,7 +31,7 @@ public class UserController {
 
         Long id = userService.getUserByName(principal.getName()).getId();
         model.addAttribute("currentUser", userService.getUserById(id));
-        return "index";
+        return "index2";
     }
 
     @GetMapping("/user") //для получение view со списком users

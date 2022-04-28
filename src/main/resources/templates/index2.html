@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-    <title>Привет, мир!</title>
+    <title>Admin page</title>
 </head>
 <body>
 <div class="container-fluid"> <!--начало главного контейнера-->
@@ -17,7 +17,7 @@
         <div class="col py-2 bg-dark">
             <div class="text-white">
                 <h3 class="text-left">
-                    <span th:text="${}"></span> UserRole.
+                    <span th:text="${currentUser.email + ' with roles: ' + currentUser.roles}"></span>
                 </h3>
             </div>
         </div>
@@ -72,14 +72,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>Name</td>
-                                        <td>Soname</td>
-                                        <td>Age</td>
-                                        <td>Email</td>
-                                        <td>Role</td>
-                                        <td><a id="modal-editUser" href="#modal-container-editUser" role="button" class="btn btn-info" data-toggle="modal">Edit</a></td>
+                                    <tr th:each="user : ${usersList}">
+                                        <td><span th:text="${user.id}"> ID </span></td>
+                                        <td><span th:text="${user.name}"> Name </span></td>
+                                        <td><span th:text="${user.surname}"> Surname </span></td>
+                                        <td><span th:text="${user.age}"> Age </span></td>
+                                        <td><span th:text="${user.email}"> Email </span></td>
+                                        <td><span th:each="r : ${user.roles}" th:text="${r.toString() + ' '}"> Roles </span></td>
+                                        <td><a id="modal-editUser" href="#modal-container-editUser" role="button" class="btn btn-info" data-toggle="modal" data-user="">Edit</a></td>
                                         <td><a id="modal-deleteUser" href="#modal-container-deleteUser" role="button" class="btn btn-danger" data-toggle="modal">Delete</a></td>
                                     </tr>
                                     </tbody>

@@ -7,14 +7,12 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Controller
-//@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -40,23 +38,11 @@ public class UserController {
         return "user1";
     }
 
-//    @GetMapping("/{id}/edit")
-//    public String editUser(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "edit";
-//    }
-
     @PostMapping("/admin/delete")
     public String deleteUser(@RequestParam(value = "id") String id) {
         userService.deleteUser(Long.parseLong(id));
         return "redirect:/admin";
     }
-
-//    @GetMapping("/{id}")
-//    public String showUser(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "user";
-//    }
 
     @PostMapping("/admin")
     public String addNewUser(@ModelAttribute("user") User user, @RequestParam(value = "admin_role", defaultValue = "USER") String itsAdmin) {

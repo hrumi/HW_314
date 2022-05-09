@@ -44,6 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUser(Long id, User user) {
+        user.setPassword(myPasswordEncoder().encode(user.getPassword()));
+        userDAOImpl.updateUser(id, user);
+    }
+
+    @Override
     public void deleteUser(Long id) {
         userDAOImpl.deleteById(id);
     }
@@ -52,6 +58,12 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user, Set<Role> roleSet) {
         user.setPassword(myPasswordEncoder().encode(user.getPassword()));
         user.setRoles(roleSet);
+        userDAOImpl.addUser(user);
+    }
+
+    @Override
+    public void addUser(User user) {
+        user.setPassword(myPasswordEncoder().encode(user.getPassword()));
         userDAOImpl.addUser(user);
     }
 

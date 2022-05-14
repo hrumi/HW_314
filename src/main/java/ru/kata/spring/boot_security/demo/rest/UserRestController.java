@@ -1,11 +1,8 @@
 package ru.kata.spring.boot_security.demo.rest;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.rest.exception_handler.UserIncorrectData;
 import ru.kata.spring.boot_security.demo.rest.exception_handler.UserIncorrectDataException;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
@@ -41,28 +38,13 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public User addUser(@RequestBody User user, @RequestParam(value = "itsAdmin", defaultValue = "USER") String itsAdmin) {
-
-        Set<Role> rolesSet = new HashSet<>();
-        rolesSet.add(roleService.getRoleById(1L));
-        if (itsAdmin.equals("ADMIN")) {
-            rolesSet.add(roleService.getRoleById(2L));
-        }
-        userService.addUser(user, rolesSet);
-
-        return user;
+    public void addUser(@RequestBody User user) {
+        userService.addUser(user);
     }
 
     @PutMapping("/users")
-    public User editUser(@RequestBody User user, @RequestParam(value = "itsAdmin", defaultValue = "USER") String itsAdmin) {
-
-        Set<Role> rolesSet = new HashSet<>();
-        rolesSet.add(roleService.getRoleById(1L));
-        if (itsAdmin.equals("ADMIN")) {
-            rolesSet.add(roleService.getRoleById(2L));
-        }
-        userService.updateUser(user.getId(), user, rolesSet);
-        return user;
+    public void editUser(@RequestBody User user) {
+        userService.updateUser(user);
     }
 
     @DeleteMapping("/users/{id}")

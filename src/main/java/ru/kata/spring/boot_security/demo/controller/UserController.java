@@ -23,13 +23,20 @@ public class UserController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/admin")
-    public String homePageAdmin (Principal principal, Model model) {
-        model.addAttribute("usersList", userService.getAllUsers());
-        Long id = userService.getUserByName(principal.getName()).getId();
-        model.addAttribute("currentUser", userService.getUserById(id));
-        return "index2";
-    }
+//    @GetMapping("/admin")
+//    public String homePageAdmin (Principal principal, Model model) {
+//        model.addAttribute("usersList", userService.getAllUsers());
+//        Long id = userService.getUserByName(principal.getName()).getId();
+//        model.addAttribute("currentUser", userService.getUserById(id));
+//        return "index2";
+//    }
+        @GetMapping("/admin")
+        public String homePageAdmin (Principal principal, Model model) {
+            model.addAttribute("usersList", userService.getAllUsers());
+            Long id = userService.getUserByName(principal.getName()).getId();
+            model.addAttribute("currentUser", userService.getUserById(id));
+            return "index3";
+}
 
     @GetMapping("/user") //для получение view со списком users
     public String homePageUser (Principal principal, Model model) {

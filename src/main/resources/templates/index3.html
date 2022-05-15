@@ -16,9 +16,9 @@
         <div class="col py-2 bg-dark">
             <div class="text-white">
                 <h3 class="text-left">
-                    <span>currentUser.email</span>
-                    <span> with roles: </span>
-                    <span>roles</span>
+                    <span id="currentUserData"></span>
+<!--                    <span> with roles: </span>-->
+<!--                    <span>roles</span>-->
                 </h3>
             </div>
         </div>
@@ -158,7 +158,7 @@
                                             </div>
                                             <div class="form-group text-center">
                                                 <label for="roleEdit">Role</label>
-                                                <select name="admin_role" multiple class="form-control" size="2" id="roleEdit">
+                                                <select name="admin_role" multiple class="form-control" size="2" id="roleEdit" required>
                                                     <option>ADMIN</option>
                                                     <option>USER</option>
                                                 </select>
@@ -169,7 +169,7 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                             Close
                                         </button>
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" onclick="updateUser()">
                                             Edit
                                         </button>
                                     </div>
@@ -190,30 +190,30 @@
                                 </div>
                                 <div class="modal-body justify-content-center col-6 mx-auto">
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD0">ID</label>
-                                            <input name="id" type="text" class="form-control" id="inputTextControlD0" readonly>
+                                            <label for="idDelete">ID</label>
+                                            <input name="id" type="text" class="form-control" id="idDelete" readonly>
                                         </div>
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD1">First name</label>
-                                            <input type="text" class="form-control" id="inputTextControlD1" readonly>
+                                            <label for="nameDelete">First name</label>
+                                            <input type="text" class="form-control" id="nameDelete" readonly>
                                         </div>
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD2">Last name</label>
-                                            <input type="text" class="form-control" id="inputTextControlD2" readonly>
+                                            <label for="surnameDelete">Last name</label>
+                                            <input type="text" class="form-control" id="surnameDelete" readonly>
                                         </div>
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD3">Age</label>
-                                            <input type="number" class="form-control" id="inputTextControlD3" readonly>
+                                            <label for="ageDelete">Age</label>
+                                            <input type="number" class="form-control" id="ageDelete" readonly>
                                         </div>
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD4">Email</label>
-                                            <input type="email" class="form-control" id="inputTextControlD4" readonly>
+                                            <label for="emailDelete">Email</label>
+                                            <input type="email" class="form-control" id="emailDelete" readonly>
                                         </div>
 
                                         <div class="form-group text-center">
-                                            <label for="inputTextControlD5">Role</label>
+                                            <label for="roleDelete">Role</label>
                                             <fieldset disabled>
-                                            <select multiple class="form-control" size="2" id="inputTextControlD5">
+                                            <select multiple class="form-control" size="2" id="roleDelete">
                                                 <option>ADMIN</option>
                                                 <option>USER</option>
                                             </select>
@@ -224,7 +224,7 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                         Close
                                     </button>
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-danger" onclick="deleteUserById()">
                                         Delete
                                     </button>
                                 </div>

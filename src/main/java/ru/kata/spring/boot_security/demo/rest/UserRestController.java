@@ -5,6 +5,8 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.rest.exception_handler.UserIncorrectDataException;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
+
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -52,6 +54,11 @@ public class UserRestController {
 
         userService.deleteUser(id);
         return "Users with ID = " + id + "was deleted.";
+    }
+
+    @GetMapping("/currentUser")
+    public User getCurrentUser (Principal principal) {
+        return userService.getUserByName(principal.getName());
     }
 
 }

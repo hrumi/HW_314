@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
  <meta charset="utf-8">
@@ -28,14 +29,15 @@
             </form>
         </div>
     </div><!--конец строки с email role и logout-->
+
     <div class="row mt-4 vh-100"> <!--строка с навигацией и табами-->
         <div class="col-md-2 p-0"> <!--колонка с навигацией-->
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Admin</a>
+                    <a sec:authorize="hasRole('ADMIN')" href="#" data-toggle="tab" class="nav-link active" aria-current="page">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user">User</a>
+                    <a href="#" data-toggle="tab" class="nav-link link-dark">User</a>
                 </li>
             </ul>
         </div>

@@ -9,7 +9,7 @@
     addUser: async (user) => await fetch('/api/users', {method: "POST", headers: userFetch.head, body: JSON.stringify(user)}),
     updateUser: async (user) => await fetch(`/api/users/`, {method: 'PUT', headers: userFetch.head, body: JSON.stringify(user)}),
     deleteUserByID: async (id) => await fetch(`/api/users/` + id, {method: 'DELETE', headers: userFetch.head}),
-    aboutCurrentUser: async () => await fetch(`/api/name`),
+    aboutCurrentUser: async () => await fetch(`/api/currentUser`),
     getUserById: async (id) => await fetch(`/api/users/` + id),
 }
 
@@ -192,19 +192,17 @@ function infoUser() {
         .then(res => res.json())
         .then(user => {
             let roles = getRoles(user.roles);
-            document.querySelector('#currentUserEmail').innerHTML = `
-                ${user.email} with roles: ${roles}
+            document.querySelector('#currentUserData').innerHTML = `${user.email} with roles: ${roles}`;
+            document.querySelector('#userInfoTable').innerHTML = `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.surname}</td>
+                <td>${user.age}</td>
+                <td>${user.email}</td>
+                <td>${roles}</td>
+            </tr>
             `;
-            // document.querySelector('#userInfoPanel').innerHTML = `
-            // <tr>
-            //     <td>${user.id}</td>
-            //     <td>${user.firstName}</td>
-            //     <td>${user.lastName}</td>
-            //     <td>${user.age}</td>
-            //     <td>${user.email}</td>
-            //     <td>${stringRoles}</td>
-            //     </tr>
-            // `;
         });
 }
 

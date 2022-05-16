@@ -15,7 +15,7 @@
 
 
 getUsers()
-infoUser()
+infoCurrentUser()
 
 //получаем юзеров - заполняем таблицу
 function getUsers() {
@@ -187,13 +187,13 @@ function addRoles(role) {
     return roles;
 }
 
-function infoUser() {
+function infoCurrentUser() {
     userFetch.aboutCurrentUser()
         .then(res => res.json())
         .then(user => {
             let roles = getRoles(user.roles);
             document.querySelector('#currentUserData').innerHTML = `${user.email} with roles: ${roles}`;
-            document.querySelector('#userInfoTable').innerHTML = `
+            document.querySelector('#bodyWithCurrentUserInfo').innerHTML = `
             <tr>
                 <td>${user.id}</td>
                 <td>${user.name}</td>
@@ -203,6 +203,11 @@ function infoUser() {
                 <td>${roles}</td>
             </tr>
             `;
+
+            if (!roles.includes('ADMIN')) {
+                $('#leftNavMenu a[href="#currentUserTable"]').tab('show')
+            }
+
         });
 }
 
